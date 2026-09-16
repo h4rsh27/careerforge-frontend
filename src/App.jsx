@@ -3,7 +3,7 @@ import {
     Route,
     Routes,
 } from "react-router-dom";
-
+import StudentResume from "./pages/StudentResume";
 import AuthLayout from "./layouts/AuthLayout";
 import StudentLayout from "./layouts/StudentLayout";
 import AdminLayout from "./layouts/AdminLayout";
@@ -93,7 +93,7 @@ function App() {
 
                 <Route
                     path="/student/resume"
-                    element={<FeaturePage />}
+                    element={<StudentResume />}
                 />
 
 
