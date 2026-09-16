@@ -7,7 +7,7 @@ import {
 import AuthLayout from "./layouts/AuthLayout";
 import StudentLayout from "./layouts/StudentLayout";
 import AdminLayout from "./layouts/AdminLayout";
-
+import StudentSkills from "./pages/StudentSkills";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
@@ -112,7 +112,10 @@ function App() {
                     element={<FeaturePage />}
                 />
 
-
+                <Route
+                    path="/student/skills"
+                    element={<StudentSkills />}
+                />
                 {/* Learning Roadmap */}
 
                 <Route
