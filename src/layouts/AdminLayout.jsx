@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const AdminLayout = () => {
@@ -11,42 +11,92 @@ const AdminLayout = () => {
         navigate("/login");
     };
 
+    const navItems = [
+        {
+            label: "Dashboard",
+            path: "/admin/dashboard",
+        },
+        {
+            label: "Companies",
+            path: "/admin/companies",
+        },
+        {
+            label: "Job Roles",
+            path: "/admin/job-roles",
+        },
+        {
+            label: "Job Listings",
+            path: "/admin/jobs",
+        },
+    ];
+
+    const initials = (user?.name || "Admin")
+        .split(" ")
+        .map((word) => word[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase();
+
     return (
         <div className="admin-layout">
 
-            <header className="navbar">
+            <header className="admin-navbar">
 
-                <div className="logo">
-                    CareerForge Admin
-                </div>
+                <Link
+                    to="/admin/dashboard"
+                    className="admin-brand"
+                >
+                    <span className="admin-brand-mark">
+                        C
+                    </span>
 
-                <nav>
+                    <span className="admin-brand-text">
+                        Career<span>Forge</span>
+                    </span>
 
-                    <Link to="/admin/dashboard">
-                        Dashboard
-                    </Link>
+                    <span className="admin-brand-badge">
+                        ADMIN
+                    </span>
+                </Link>
 
-                    <Link to="/admin/companies">
-                        Companies
-                    </Link>
+                <nav className="admin-nav">
 
-                    <Link to="/admin/job-roles">
-                        Job Roles
-                    </Link>
-
-                    <Link to="/admin/jobs">
-                        Job Listings
-                    </Link>
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.path}
+                            to={item.path}
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "admin-nav-link active"
+                                    : "admin-nav-link"
+                            }
+                        >
+                            {item.label}
+                        </NavLink>
+                    ))}
 
                 </nav>
 
-                <div className="user-section">
+                <div className="admin-user">
 
-                    <span>
-                        {user?.name}
-                    </span>
+                    <div className="admin-user-avatar">
+                        {initials}
+                    </div>
 
-                    <button onClick={handleLogout}>
+                    <div className="admin-user-info">
+                        <span>Administrator</span>
+
+                        <strong>
+                            {user?.name || "Admin"}
+                        </strong>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="admin-logout"
+                        onClick={handleLogout}
+                    >
+                        <span>↪</span>
                         Logout
                     </button>
 
@@ -54,7 +104,7 @@ const AdminLayout = () => {
 
             </header>
 
-            <main>
+            <main className="admin-content">
                 <Outlet />
             </main>
 
