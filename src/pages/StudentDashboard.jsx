@@ -1,100 +1,261 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import { useAuth } from "../context/AuthContext";
 
-const StudentDashboard = () => {
+import {
+    getDashboardProfile,
+    getDashboardSkills,
+    getDashboardResume,
+    getDashboardJobs,
+    getDashboardApplications,
+} from "../api/dashboardApi";
 
+import DashboardHero from "../components/dashboard/DashboardHero";
+import DashboardStats from "../components/dashboard/DashboardStats";
+import DashboardJobs from "../components/dashboard/DashboardJobs";
+import DashboardSkillGap from "../components/dashboard/DashboardSkillGap";
+import DashboardRoadmap from "../components/dashboard/DashboardRoadmap";
+import DashboardApplications from "../components/dashboard/DashboardApplications";
+
+const StudentDashboard = () => {
     const { user } = useAuth();
 
+    const [profile, setProfile] =
+        useState(null);
+
+    const [skills, setSkills] =
+        useState([]);
+
+    const [resume, setResume] =
+        useState(null);
+
+    const [jobs, setJobs] =
+        useState([]);
+
+    const [applications, setApplications] =
+        useState(null);
+
+    const [loading, setLoading] =
+        useState(true);
+
+    const [error, setError] =
+        useState("");
+
+    useEffect(() => {
+        loadDashboard();
+    }, []);
+
+    const loadDashboard = async () => {
+        try {
+            setLoading(true);
+            setError("");
+
+            const results =
+                await Promise.allSettled([
+                    getDashboardProfile(),
+                    getDashboardSkills(),
+                    getDashboardResume(),
+                    getDashboardJobs(),
+                    getDashboardApplications(),
+                ]);
+
+            const [
+                profileResult,
+                skillsResult,
+                resumeResult,
+                jobsResult,
+                applicationsResult,
+            ] = results;
+
+            if (
+                profileResult.status ===
+                "fulfilled"
+            ) {
+                setProfile(
+                    profileResult.value
+                );
+            }
+
+            if (
+                skillsResult.status ===
+                "fulfilled"
+            ) {
+                setSkills(
+                    Array.isArray(
+                        skillsResult.value
+                    )
+                        ? skillsResult.value
+                        : []
+                );
+            }
+
+            if (
+                resumeResult.status ===
+                "fulfilled"
+            ) {
+                setResume(
+                    resumeResult.value
+                );
+            }
+
+            if (
+                jobsResult.status ===
+                "fulfilled"
+            ) {
+                const data =
+                    jobsResult.value;
+
+                const recommendationList =
+                    data?.recommendations ||
+                    data?.jobs ||
+                    data?.jobRecommendations ||
+                    [];
+
+                setJobs(
+                    Array.isArray(
+                        recommendationList
+                    )
+                        ? recommendationList
+                        : []
+                );
+            }
+
+            if (
+                applicationsResult.status ===
+                "fulfilled"
+            ) {
+                setApplications(
+                    applicationsResult.value
+                );
+            }
+        } catch {
+            setError(
+                "Unable to load your dashboard."
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const calculateProfileCompletion =
+        () => {
+            if (!profile) {
+                return 0;
+            }
+
+            const fields = [
+                "phone",
+                "college",
+                "degree",
+                "branch",
+                "graduationYear",
+                "location",
+                "bio",
+            ];
+
+            const completed =
+                fields.filter(
+                    (field) => {
+                        const value =
+                            profile[field];
+
+                        return (
+                            value !== null &&
+                            value !== undefined &&
+                            String(
+                                value
+                            ).trim() !== ""
+                        );
+                    }
+                ).length;
+
+            return Math.round(
+                (completed /
+                    fields.length) *
+                    100
+            );
+        };
+
+    if (loading) {
+        return (
+            <main className="dashboard-page">
+                <div className="dashboard-loading">
+                    <div className="loading-spinner"></div>
+
+                    <h2>
+                        Building your career
+                        dashboard
+                    </h2>
+
+                    <p>
+                        Gathering your CareerForge
+                        intelligence...
+                    </p>
+                </div>
+            </main>
+        );
+    }
+
+    const profileCompletion =
+        calculateProfileCompletion();
+
+    const applicationsCount =
+        applications?.totalApplications ||
+        0;
+
     return (
-        <div className="dashboard">
+        <main className="dashboard-page">
+            <div className="dashboard-page-background"></div>
 
-            <section className="dashboard-header">
+            <div className="dashboard-page-content">
+                {error && (
+                    <div className="dashboard-alert">
+                        <span>!</span>
+                        {error}
+                    </div>
+                )}
 
-                <h1>
-                    Welcome, {user?.name} 👋
-                </h1>
+                <DashboardHero
+                    user={user}
+                    profileCompletion={
+                        profileCompletion
+                    }
+                />
 
-                <p>
-                    Your personalized career journey starts here.
-                </p>
+                <DashboardStats
+                    skillsCount={
+                        skills.length
+                    }
+                    hasResume={Boolean(
+                        resume
+                    )}
+                    jobsCount={
+                        jobs.length
+                    }
+                    applicationsCount={
+                        applicationsCount
+                    }
+                />
 
-            </section>
+                <div className="dashboard-main-grid">
+                    <DashboardJobs
+                        jobs={jobs}
+                    />
 
-            <section className="dashboard-grid">
+                    <DashboardSkillGap />
+                </div>
 
-                <Link
-                    to="/student/profile"
-                    className="dashboard-card"
-                >
-                    <h3>👤 Profile</h3>
-                    <p>
-                        Manage your career profile.
-                    </p>
-                </Link>
+                <div className="dashboard-main-grid">
+                    <DashboardRoadmap />
 
-                <Link
-                    to="/student/resume"
-                    className="dashboard-card"
-                >
-                    <h3>📄 Resume</h3>
-                    <p>
-                        Upload and analyze your resume.
-                    </p>
-                </Link>
-
-                <Link
-                    to="/student/jobs"
-                    className="dashboard-card"
-                >
-                    <h3>💼 Job Recommendations</h3>
-                    <p>
-                        Discover jobs matching your skills.
-                    </p>
-                </Link>
-
-                <Link
-                    to="/student/skill-gap"
-                    className="dashboard-card"
-                >
-                    <h3>🎯 Skill Gap</h3>
-                    <p>
-                        Find the skills you need to improve.
-                    </p>
-                </Link>
-
-                <Link
-                    to="/student/roadmap"
-                    className="dashboard-card"
-                >
-                    <h3>📚 Learning Roadmap</h3>
-                    <p>
-                        Follow your personalized roadmap.
-                    </p>
-                </Link>
-
-                <Link
-                    to="/student/applications"
-                    className="dashboard-card"
-                >
-                    <h3>📊 Applications</h3>
-                    <p>
-                        Track your job applications.
-                    </p>
-                </Link>
-
-                <Link
-                    to="/student/interview"
-                    className="dashboard-card"
-                >
-                    <h3>🤖 Mock Interview</h3>
-                    <p>
-                        Practice interviews with CareerForge AI.
-                    </p>
-                </Link>
-
-            </section>
-
-        </div>
+                    <DashboardApplications
+                        analytics={
+                            applications
+                        }
+                    />
+                </div>
+            </div>
+        </main>
     );
 };
 
