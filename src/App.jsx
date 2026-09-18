@@ -3,6 +3,7 @@ import {
     Route,
     Routes,
 } from "react-router-dom";
+import AdminJobRoles from "./pages/AdminJobRoles";
 import StudentResume from "./pages/StudentResume";
 import AuthLayout from "./layouts/AuthLayout";
 import StudentLayout from "./layouts/StudentLayout";
@@ -18,7 +19,6 @@ import { useAuth } from "./context/AuthContext";
 import StudentProfile from "./pages/StudentProfile";
 import AdminCompanies from "./pages/AdminCompanies";
 const ProtectedRoute = ({ children, role }) => {
-
     const { user, loading } = useAuth();
 
     if (loading) {
@@ -166,7 +166,7 @@ function App() {
 
                 <Route
                     path="/admin/job-roles"
-                    element={<FeaturePage />}
+                    element={<AdminJobRoles />}
                 />
 
                 <Route
