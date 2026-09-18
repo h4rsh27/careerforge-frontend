@@ -17,6 +17,7 @@ const StudentLayout = () => {
        { label: "Resume", path: "/student/resume" },
        { label: "Skill Gap", path: "/student/skill-gap" },
        { label: "Readiness", path: "/student/career-readiness" },
+       { label: "Roadmap", path: "/student/roadmap" },
        { label: "Jobs", path: "/student/jobs" },
        { label: "Applications", path: "/student/applications" },
    ];

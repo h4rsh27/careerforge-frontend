@@ -11,6 +11,7 @@ import StudentLayout from "./layouts/StudentLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import StudentSkills from "./pages/StudentSkills";
 import Login from "./pages/Login";
+import StudentLearningRoadmap from "./pages/StudentLearningRoadmap";
 import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -120,7 +121,7 @@ function App() {
 
                 <Route
                     path="/student/roadmap"
-                    element={<FeaturePage />}
+                    element={<StudentLearningRoadmap />}
                 />
 
 
