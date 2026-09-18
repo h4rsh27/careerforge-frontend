@@ -11,30 +11,14 @@ const StudentLayout = () => {
     };
 
    const navItems = [
-       {
-           label: "Dashboard",
-           path: "/student/dashboard",
-       },
-       {
-           label: "Profile",
-           path: "/student/profile",
-       },
-       {
-           label: "Skills",
-           path: "/student/skills",
-       },
-       {
-           label: "Resume",
-           path: "/student/resume",
-       },
-       {
-           label: "Jobs",
-           path: "/student/jobs",
-       },
-       {
-           label: "Applications",
-           path: "/student/applications",
-       },
+       { label: "Dashboard", path: "/student/dashboard" },
+       { label: "Profile", path: "/student/profile" },
+       { label: "Skills", path: "/student/skills" },
+       { label: "Resume", path: "/student/resume" },
+       { label: "Skill Gap", path: "/student/skill-gap" },
+       { label: "Readiness", path: "/student/career-readiness" },
+       { label: "Jobs", path: "/student/jobs" },
+       { label: "Applications", path: "/student/applications" },
    ];
     const initials = (user?.name || "CF")
         .split(" ")

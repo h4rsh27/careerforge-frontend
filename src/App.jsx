@@ -19,6 +19,7 @@ import StudentJobs from "./pages/StudentJobs";
 import { useAuth } from "./context/AuthContext";
 import StudentProfile from "./pages/StudentProfile";
 import AdminJobListings from "./pages/AdminJobListings";
+import StudentCareerReadiness from "./pages/StudentCareerReadiness";
 import AdminCompanies from "./pages/AdminCompanies";
 const ProtectedRoute = ({ children, role }) => {
     const { user, loading } = useAuth();
@@ -142,6 +143,10 @@ function App() {
                 />
 
             </Route>
+            <Route
+                path="/student/career-readiness"
+                element={<StudentCareerReadiness />}
+            />
 
 
             {/* =========================
