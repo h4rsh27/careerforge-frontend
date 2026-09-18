@@ -13,10 +13,10 @@ import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import FeaturePage from "./pages/FeaturePage";
-
+import StudentJobs from "./pages/StudentJobs";
 import { useAuth } from "./context/AuthContext";
 import StudentProfile from "./pages/StudentProfile";
-
+import AdminCompanies from "./pages/AdminCompanies";
 const ProtectedRoute = ({ children, role }) => {
 
     const { user, loading } = useAuth();
@@ -99,10 +99,7 @@ function App() {
 
                 {/* Job Recommendations */}
 
-                <Route
-                    path="/student/jobs"
-                    element={<FeaturePage />}
-                />
+
 
 
                 {/* Skill Gap */}
@@ -131,7 +128,10 @@ function App() {
                     element={<FeaturePage />}
                 />
 
-
+                <Route
+                    path="/student/jobs"
+                    element={<StudentJobs />}
+                />
                 {/* Mock Interview */}
 
                 <Route
@@ -161,7 +161,7 @@ function App() {
 
                 <Route
                     path="/admin/companies"
-                    element={<FeaturePage />}
+                    element={<AdminCompanies />}
                 />
 
                 <Route
