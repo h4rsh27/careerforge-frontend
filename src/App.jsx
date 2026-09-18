@@ -4,6 +4,7 @@ import {
     Routes,
 } from "react-router-dom";
 import AdminJobRoles from "./pages/AdminJobRoles";
+import StudentSkillGap from "./pages/StudentSkillGap";
 import StudentResume from "./pages/StudentResume";
 import AuthLayout from "./layouts/AuthLayout";
 import StudentLayout from "./layouts/StudentLayout";
@@ -107,7 +108,7 @@ function App() {
 
                 <Route
                     path="/student/skill-gap"
-                    element={<FeaturePage />}
+                    element={<StudentSkillGap />}
                 />
 
                 <Route
