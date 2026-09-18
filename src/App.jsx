@@ -17,6 +17,7 @@ import FeaturePage from "./pages/FeaturePage";
 import StudentJobs from "./pages/StudentJobs";
 import { useAuth } from "./context/AuthContext";
 import StudentProfile from "./pages/StudentProfile";
+import AdminJobListings from "./pages/AdminJobListings";
 import AdminCompanies from "./pages/AdminCompanies";
 const ProtectedRoute = ({ children, role }) => {
     const { user, loading } = useAuth();
@@ -171,7 +172,7 @@ function App() {
 
                 <Route
                     path="/admin/jobs"
-                    element={<FeaturePage />}
+                    element={<AdminJobListings />}
                 />
 
             </Route>
