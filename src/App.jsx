@@ -11,6 +11,7 @@ import StudentLayout from "./layouts/StudentLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import StudentSkills from "./pages/StudentSkills";
 import Login from "./pages/Login";
+import StudentApplications from "./pages/StudentApplications";
 import StudentLearningRoadmap from "./pages/StudentLearningRoadmap";
 import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
@@ -129,7 +130,7 @@ function App() {
 
                 <Route
                     path="/student/applications"
-                    element={<FeaturePage />}
+                    element={<StudentApplications />}
                 />
 
                 <Route
