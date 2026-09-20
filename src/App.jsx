@@ -11,6 +11,9 @@ import StudentLayout from "./layouts/StudentLayout";
 import AdminLayout from "./layouts/AdminLayout";
 import StudentSkills from "./pages/StudentSkills";
 import Login from "./pages/Login";
+import StudentCareerAssistant
+    from "./pages/StudentCareerAssistant";
+import StudentInterview from "./pages/StudentInterview";
 import StudentApplications from "./pages/StudentApplications";
 import StudentLearningRoadmap from "./pages/StudentLearningRoadmap";
 import Register from "./pages/Register";
@@ -113,7 +116,10 @@ function App() {
                     path="/student/skill-gap"
                     element={<StudentSkillGap />}
                 />
-
+                 <Route
+                                path="/student/career-readiness"
+                                element={<StudentCareerReadiness />}
+                            />
                 <Route
                     path="/student/skills"
                     element={<StudentSkills />}
@@ -141,14 +147,14 @@ function App() {
 
                 <Route
                     path="/student/interview"
-                    element={<FeaturePage />}
+                    element={<StudentInterview />}
                 />
-
+                <Route
+                    path="/student/ai-assistant"
+                    element={<StudentCareerAssistant />}
+                />
             </Route>
-            <Route
-                path="/student/career-readiness"
-                element={<StudentCareerReadiness />}
-            />
+
 
 
             {/* =========================
