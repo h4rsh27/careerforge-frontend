@@ -16758,3 +16758,522 @@ span:last-child {
         max-width: 85%;
     }
 }
+/* =========================================================
+   RESUME AI REVIEW
+   ========================================================= */
+
+.resume-review-page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 42px 28px 70px;
+}
+
+.resume-review-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 42px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(124, 92, 255, 0.18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 20% 100%,
+            rgba(64, 180, 255, 0.10),
+            transparent 35%
+        ),
+        rgba(17, 19, 29, 0.82);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.22);
+}
+
+.resume-review-hero::after {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: -90px;
+    top: -100px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.resume-review-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+}
+
+.resume-review-eyebrow {
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: #9f8cff;
+}
+
+.resume-review-hero h1 {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+.resume-review-hero h1 span {
+    display: block;
+    color: #a996ff;
+}
+
+.resume-review-hero p {
+    max-width: 680px;
+    margin: 18px 0 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.resume-file-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 22px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 12px;
+}
+
+.resume-analyze-button {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    flex-shrink: 0;
+    min-width: 190px;
+    padding: 13px 19px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    background: #7c5cff;
+    color: #fff;
+    font-weight: 650;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(124, 92, 255, 0.24);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.resume-analyze-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 17px 38px rgba(124, 92, 255, 0.30);
+}
+
+.resume-analyze-button:disabled {
+    cursor: wait;
+    opacity: 0.72;
+}
+
+.button-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: resume-spin 0.7s linear infinite;
+}
+
+@keyframes resume-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Scores */
+
+.resume-score-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.resume-score-card {
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    background: rgba(17, 19, 29, 0.72);
+}
+
+.score-card-header {
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 13px;
+}
+
+.resume-score {
+    margin: 13px 0 8px;
+    font-size: 44px;
+    line-height: 1;
+    font-weight: 750;
+    letter-spacing: -0.04em;
+}
+
+.resume-score span {
+    margin-left: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.score-good {
+    color: #7ee2a8;
+}
+
+.score-average {
+    color: #f3c969;
+}
+
+.score-low {
+    color: #f08080;
+}
+
+.resume-score-card p {
+    margin: 0 0 16px;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.score-progress {
+    height: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.score-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.8s ease;
+}
+
+.score-progress-fill.score-good {
+    background: #7ee2a8;
+}
+
+.score-progress-fill.score-average {
+    background: #f3c969;
+}
+
+.score-progress-fill.score-low {
+    background: #f08080;
+}
+
+/* Summary */
+
+.resume-summary-card,
+.resume-improvement-card,
+.resume-review-section {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    background: rgba(17, 19, 29, 0.72);
+}
+
+.resume-summary-card {
+    padding: 26px;
+    margin-bottom: 18px;
+}
+
+.resume-summary-card > p {
+    margin: 18px 0 0;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.75;
+    font-size: 14px;
+}
+
+/* Section headings */
+
+.resume-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.resume-section-heading h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 650;
+}
+
+.resume-section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border: 1px solid rgba(124, 92, 255, 0.20);
+    border-radius: 10px;
+    background: rgba(124, 92, 255, 0.10);
+    color: #a996ff;
+}
+
+/* Review grid */
+
+.resume-review-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.resume-review-section {
+    padding: 24px;
+}
+
+.resume-review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.resume-review-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.list-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(124, 92, 255, 0.12);
+    color: #a996ff;
+    font-size: 10px;
+}
+
+.resume-review-empty {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.025);
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+}
+
+/* Improvements */
+
+.resume-improvement-card {
+    margin-top: 18px;
+    padding: 26px;
+}
+
+.resume-section-heading p {
+    margin: 4px 0 0;
+    color: rgba(255, 255, 255, 0.40);
+    font-size: 12px;
+}
+
+.improvement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.improvement-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.025);
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.improvement-number {
+    color: #9f8cff;
+    font-size: 11px;
+    font-weight: 750;
+}
+
+/* Loading */
+
+.resume-analysis-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+    background: rgba(17, 19, 29, 0.65);
+    text-align: center;
+}
+
+.loading-orb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(124, 92, 255, 0.30);
+    border-radius: 50%;
+    background: rgba(124, 92, 255, 0.10);
+    color: #a996ff;
+    font-size: 25px;
+    animation: resume-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes resume-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(124, 92, 255, 0);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 35px rgba(124, 92, 255, 0.18);
+    }
+}
+
+.resume-analysis-loading h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.resume-analysis-loading p {
+    max-width: 480px;
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 13px;
+}
+
+/* Empty */
+
+.resume-analysis-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 330px;
+    padding: 40px;
+    border: 1px dashed rgba(255, 255, 255, 0.10);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.empty-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 18px;
+    border-radius: 16px;
+    background: rgba(124, 92, 255, 0.10);
+    color: #a996ff;
+    font-size: 22px;
+}
+
+.resume-analysis-empty h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.resume-analysis-empty p {
+    margin: 10px 0 0;
+    color: rgba(255, 255, 255, 0.43);
+    font-size: 13px;
+}
+
+/* Error */
+
+.resume-analysis-error {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 18px;
+    padding: 15px 18px;
+    border: 1px solid rgba(240, 128, 128, 0.20);
+    border-radius: 12px;
+    background: rgba(240, 128, 128, 0.07);
+    color: #f08080;
+    font-size: 13px;
+}
+
+.resume-analysis-error span {
+    color: rgba(255, 255, 255, 0.52);
+    line-height: 1.5;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+
+    .resume-review-hero {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .resume-analyze-button {
+        width: 100%;
+    }
+
+    .resume-score-grid,
+    .resume-review-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .resume-review-page {
+        padding: 25px 16px 50px;
+    }
+
+    .resume-review-hero {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .resume-review-hero h1 {
+        font-size: 32px;
+    }
+
+    .resume-summary-card,
+    .resume-improvement-card,
+    .resume-review-section,
+    .resume-score-card {
+        padding: 20px;
+    }
+}

@@ -72,7 +72,12 @@ const StudentNavigation = () => {
                     >
                         Career Readiness
                     </NavLink>
-
+                    <NavLink
+                        to="/student/resume-review"
+                        className={linkClass}
+                    >
+                        Resume Review
+                    </NavLink>
                     <NavLink
                         to="/student/roadmap"
                         className={linkClass}
