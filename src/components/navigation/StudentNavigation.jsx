@@ -101,7 +101,10 @@ const StudentNavigation = () => {
                         to="/student/jobs"
                         className={linkClass}
                     >
-                        Recommended Jobs
+                        Recommended for you
+                    </NavLink>
+                    <NavLink to="/student/live-jobs" className={linkClass}>
+                       Explore Live Jobs
                     </NavLink>
 
                     <NavLink

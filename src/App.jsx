@@ -13,10 +13,12 @@ import StudentSkills from "./pages/StudentSkills";
 import Login from "./pages/Login";
 import StudentCareerAssistant
     from "./pages/StudentCareerAssistant";
+import StudentLiveJobs from "./pages/StudentLiveJobs";
 import StudentInterview from "./pages/StudentInterview";
 import StudentApplications from "./pages/StudentApplications";
 import StudentLearningRoadmap from "./pages/StudentLearningRoadmap";
 import Register from "./pages/Register";
+import StudentResumeReview from "./pages/StudentResumeReview";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import FeaturePage from "./pages/FeaturePage";
@@ -103,7 +105,10 @@ function App() {
                     path="/student/resume"
                     element={<StudentResume />}
                 />
-
+                <Route
+                    path="/student/resume-review"
+                    element={<StudentResumeReview />}
+                />
 
                 {/* Job Recommendations */}
 
@@ -142,6 +147,10 @@ function App() {
                 <Route
                     path="/student/jobs"
                     element={<StudentJobs />}
+                />
+                <Route
+                    path="/student/live-jobs"
+                    element={<StudentLiveJobs />}
                 />
                 {/* Mock Interview */}
 
